@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define PHILO_NBR 5
-#define TIME_TO_DIE 300
+#define PHILO_NBR 20
+#define TIME_TO_DIE 400
 #define TIME_TO_EAT 100
 #define TIME_TO_SLEEP 100
 
@@ -67,7 +67,7 @@ void *is_dead(void *arg)
         int i = 0;
         while (i < PHILO_NBR)
         {
-            if (get_current_time() - philos[i].last_meal > (TIME_TO_DIE))
+            if (get_current_time() - philos[i].last_meal >= TIME_TO_DIE)
             {
                 printf("%ld %d died\n", get_current_time() - philos[0].data->start_time, philos[i].id);
                 philos[i].data->death_flag = 0;
@@ -131,6 +131,7 @@ int main()
     t_data          data;
 
     data.death_flag = 1;
+    printf();
     pthread_mutex_init(&data.death_mutex, NULL);
     pthread_create(&scanner, NULL, &is_dead, philos);
     int i;

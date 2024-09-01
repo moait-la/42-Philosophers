@@ -36,6 +36,21 @@ typedef struct s_philo
 	t_args			args;
 }	t_philo;
 
-int	ft_atoi(const char *str);
+void	*ft_routine(void *arg);
+
+void	ft_hold_forks(t_philo *philos);
+void	ft_release_forks(t_philo *philo);
+void	ft_eat_state(t_philo *philo);
+void	ft_sleep_state(t_philo *philo);
+
+int		ft_parse_param(int argc, char **argv, t_args *args);
+long	get_current_time(void);
+void	ft_init(t_philo *philos, pthread_mutex_t *forks, t_data *data, t_args args);
+void	 ft_usleep(long milliseconds, t_philo *philos);
+
+void	*listener_thread(void *arg);
+void	ft_create_threads(pthread_t *threads, t_philo *philos, t_data *data);
+
+int		ft_atoi(const char *str);
 
 #endif
