@@ -13,6 +13,11 @@ void	*listener_thread(void *arg)
 		i = -1;
 		while (++i < philos[0].args.philos_nbr)
 		{
+			if (!philos->data->stop_flag)
+			{
+				pthread_mutex_unlock(&philos[0].data->death_mutex);
+				return (NULL);
+			}
 			if (get_current_time() - philos[i].last_meal > philos[i].args.time_to_die)
 			{
 				philos[i].data->death_flag = 0;
@@ -29,8 +34,10 @@ void	*listener_thread(void *arg)
 
 void	ft_create_threads(pthread_t *threads, t_philo *philos, t_data *data)
 {
+	int i;
+
+	i = -1;
 	pthread_create(&data->listener_thread, NULL, &listener_thread, philos);
-	int i = -1;
 	while (++i < data->args->philos_nbr)
 		pthread_create(&threads[i], NULL, &ft_routine, &philos[i]);
 }

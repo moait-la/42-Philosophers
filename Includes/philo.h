@@ -20,6 +20,7 @@ typedef struct s_args
 typedef struct s_data
 {
 	int				death_flag;
+	int				stop_flag;
 	long			start_time;
 	pthread_t		listener_thread;
 	pthread_mutex_t	death_mutex;
@@ -29,6 +30,8 @@ typedef struct s_data
 typedef struct s_philo
 {
 	int				id;
+	int				max_eat_reached;
+	int				eat_count;
 	long			last_meal;
     pthread_mutex_t *right_fork;
     pthread_mutex_t *left_fork;

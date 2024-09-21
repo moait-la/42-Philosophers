@@ -28,11 +28,15 @@ void	ft_release_forks(t_philo *philo)
 void	ft_eat_state(t_philo *philo)
 {
 	long	pass_time;
+
 	if (philo->data->death_flag != 0)
 	{
 		pass_time = get_current_time() - philo->data->start_time;
 		printf("%ld %d is eating\n", pass_time, philo->id);
 		ft_usleep(philo->args.time_to_eat, philo);
+		// pthread_mutex_lock(&philo->data->death_mutex); // needs to be here cause if max eated khas hadik tkon hya last meal
+		philo->last_meal = get_current_time();
+		// pthread_mutex_unlock(&philo->data->death_mutex);
 	}
 }
 

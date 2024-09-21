@@ -4,9 +4,9 @@ OBJ = ${SRCS:.c=.o}
 
 NAME = philo
 
-CC = cc
-RM = rm
-CFLAGS = -Wall -Wextra -Werror
+CC = cc #-fsanitize=address -g
+RM = rm -rf
+CFLAGS =# -Wall -Wextra -Werror
 
 %.o: %.c ./Includes/philo.h
 	${CC} ${CFLAGS} -c $< -o $@
@@ -17,7 +17,7 @@ ${NAME}: ${OBJ}
 all: ${NAME}
 
 clean:
-	${RM} ${OBJ} ${BONUS_OBJ}
+	${RM} ${OBJ}
 
 fclean: clean
 	${RM} ${NAME} ${NAME_BONUS}

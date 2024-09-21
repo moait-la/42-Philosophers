@@ -52,6 +52,8 @@ void	ft_init(t_philo *philos, pthread_mutex_t *forks, t_data *data, t_args args)
             philos[i].right_fork = &forks[0];
         else
             philos[i].right_fork = &forks[i + 1];
+		philos[i].max_eat_reached = 1;
+		philos[i].eat_count = 0;
         philos[i].data = data;
 		philos[i].args = args;
 	}
