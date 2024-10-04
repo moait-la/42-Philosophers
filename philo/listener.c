@@ -6,7 +6,7 @@
 /*   By: moait-la <moait-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 08:38:53 by moait-la          #+#    #+#             */
-/*   Updated: 2024/09/29 08:57:02 by moait-la         ###   ########.fr       */
+/*   Updated: 2024/09/30 06:45:25 by moait-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	*listener(void *arg)
 		while (++i < philo[0].args.philos_nbr)
 		{
 			pthread_mutex_lock(&philo[0].data->time_mtx);
-			pass_time = get_current_time() - philo[i].last_meal;
+			pass_time = current_time() - philo[i].last_meal;
 			if (pass_time > philo[i].args.time_to_die)
 			{
 				pthread_mutex_lock(&philo[0].data->print_mtx);
-				pass_time = get_current_time() - philo[0].data->start_time;
+				pass_time = current_time() - philo[0].data->start_time;
 				printf("%ld %d died\n", pass_time, philo[i].id);
 				return (pthread_mutex_unlock(&philo[i].data->time_mtx), NULL);
 			}

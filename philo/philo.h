@@ -6,7 +6,7 @@
 /*   By: moait-la <moait-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 08:34:59 by moait-la          #+#    #+#             */
-/*   Updated: 2024/09/29 08:58:29 by moait-la         ###   ########.fr       */
+/*   Updated: 2024/09/30 06:45:45 by moait-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_release_forks(t_philo *philo);
 void	ft_eat_state(t_philo *philo);
 void	ft_sleep_state(t_philo *philo);
 int		ft_parse_param(int argc, char **argv, t_args *args);
-long	get_current_time(void);
+long	current_time(void);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_init_data(pthread_mutex_t *forks, t_data *data, t_args args);
 void	ft_init_philos(t_philo *philos, pthread_mutex_t *forks, \

@@ -6,7 +6,7 @@
 /*   By: moait-la <moait-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 08:44:17 by moait-la          #+#    #+#             */
-/*   Updated: 2024/09/29 08:58:57 by moait-la         ###   ########.fr       */
+/*   Updated: 2024/10/01 01:07:57 by moait-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	ft_join_and_destroy(pthread_mutex_t *forks, t_args args, t_data *data)
 	i = -1;
 	while (++i < args.philos_nbr)
 		pthread_mutex_destroy(&forks[i]);
+	pthread_mutex_destroy(&data->meals_mtx);
+	pthread_mutex_destroy(&data->print_mtx);
+	pthread_mutex_destroy(&data->time_mtx);
 }
 
 void	*ft_routine(void *arg)
@@ -44,8 +47,8 @@ int	main(int argc, char *argv[])
 	t_args				args;
 	t_data				data;
 	t_philo				*philos;
-	pthread_mutex_t		*forks;
 	pthread_t			*threads;
+	pthread_mutex_t		*forks;
 
 	if (!ft_parse_param(argc, argv, &args))
 	{

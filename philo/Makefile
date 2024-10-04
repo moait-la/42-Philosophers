@@ -1,27 +1,24 @@
-SRCS = ./actions.c ./atoi.c  ./listener.c  ./utils.c ./main.c \
-		./parsing.c
+SRCFILES = ./actions.c ./atoi.c  ./listener.c  ./utils.c ./main.c ./parsing.c
 
-OBJ = ${SRCS:.c=.o}
+CC = cc  -Wall -Wextra -Werror
 
-NAME = philoosa
+OBJECTFILES = $(SRCFILES:.c=.o)
 
-CC = cc #-fsanitize=address -g
-RM = rm -rf
-CFLAGS = -Wall -Wextra -Werror
+NAME = ./philo
 
-%.o: %.c ./Includes/philo.h
-	${CC} ${CFLAGS} -c $< -o $@
+all: $(NAME)
 
-${NAME}: ${OBJ}
-	${CC} ${OBJ} -o ${NAME}
+$(NAME): $(OBJECTFILES)
+	$(CC) $(OBJECTFILES) -o $@
 
-all: ${NAME}
+%.o: %.c ./philo.h
+	$(CC) -c $< -o $@
 
 clean:
-	${RM} ${OBJ}
+	rm -f $(OBJECTFILES)
 
 fclean: clean
-	${RM} ${NAME} ${NAME_BONUS}
+	rm -f $(NAME)
 
 re: fclean all
 
